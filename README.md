@@ -24,9 +24,10 @@ To update your hosts file for chrisguest.internal.
 cat /etc/hosts
 sudo nano /etc/hosts
 sudo killall -HUP mDNSResponder 
-https://chrisguest.internal:8443/
+open https://chrisguest.internal:8443/
 
 # Testing 
+curl https://chrisguest.internal:8443/
 curl -k http://localhost:8080
 curl -k https://localhost:8443
 
