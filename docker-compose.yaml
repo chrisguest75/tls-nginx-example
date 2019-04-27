@@ -24,9 +24,15 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
+    ports:
+      - target: 3306
+        published: 3306
+        protocol: tcp
+        mode: host         
     volumes:
       - ./mysql_data:/var/lib/mysql
-    
+      - ./mysql_create/01_requests.sql:/docker-entrypoint-initdb.d/01_requests.sql
+      
   mirror:
     build: ./py-request-mirror
     environment:
