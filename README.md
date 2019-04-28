@@ -1,6 +1,11 @@
 # README.md
 This repo demonstrates a few TLS features of nginx.  
 
+* HTTP to HTTPS redirection
+* TLS protocols and ciphers definitions
+* HSTS - Strict Transport Security 
+* Reverse proxy definition
+
 # Generate Self-signed Certs
 To run this locally on docker-compose you'll first need to generate a self signed cert
 
@@ -13,11 +18,10 @@ cd certs
 
 # Running
 ```
-docker-compose up --build
+docker-compose up -d --build
 ```
 
-
-## MacOs
+## MacOs Trusted
 ### MacOS Hosts
 You can update your local hosts file for name resolution.
 To update your hosts file for chrisguest.internal.
@@ -33,15 +37,15 @@ You can add the certificate to the keychain.  This will mean it will be trusted 
 # Testing 
 
 ```
-|----------------------------------------|-------------------------------|
-| Test                                   | Outcome                       |
-|----------------------------------------|-------------------------------|
-| curl -k https://localhost:8443         | HTML Response                 |
-| curl -k http://localhost:8080          | Redirect, HTTPS HTML Response |
-| curl https://chrisguest.internal:8443/ |                               |
-| open https://chrisguest.internal:8443/ |                               |
-|                                        |                               |
-|----------------------------------------|-------------------------------|
+|----------------------------------------------|-------------------------------|
+| Test                                         | Outcome                       |
+|----------------------------------------------|-------------------------------|
+| curl https://chrisguest.internal:8443/       | HTML Response                 |
+| open https://chrisguest.internal:8443/       | HTML Response                 |
+| curl https://chrisguest.internal:8443/mirror | JSON Mirror Response          |
+| open https://chrisguest.internal:8443/mirror | JSON Mirror Response          |
+|                                              |                               |
+|----------------------------------------------|-------------------------------|
 ```
 
 Test the mirror service.
