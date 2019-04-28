@@ -14,11 +14,16 @@ WORKDIR /workbench
 COPY ./Pipfile /workbench/Pipfile
 COPY ./Pipfile.lock /workbench/Pipfile.lock 
 COPY ./mirror.py /workbench/mirror.py
+COPY ./write_request.py /workbench/write_request.py
 
 #RUN set -ex && pipenv install --deploy --system
 RUN pipenv install --deploy --system --dev
 
 ENV PORT=5000
+ENV DBUSER=root
+ENV DBPASSWORD=example
+ENV DBPORT=3306
+ENV DBHOST=mysql
 
 USER appuser
 EXPOSE 5000

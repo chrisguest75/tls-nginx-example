@@ -32,7 +32,9 @@ services:
     volumes:
       - ./mysql_data:/var/lib/mysql
       - ./mysql_create/01_requests.sql:/docker-entrypoint-initdb.d/01_requests.sql
-      
+    networks:
+      - backplane      
+
   mirror:
     build: ./py-request-mirror
     environment:
@@ -42,3 +44,9 @@ services:
         published: 5000
         protocol: tcp
         mode: host    
+    networks:
+      - backplane
+
+      
+networks:
+  backplane:
