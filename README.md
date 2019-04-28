@@ -17,7 +17,8 @@ docker-compose up
 ```
 
 
-## MacOS Hosts
+##MacOs
+### MacOS Hosts
 You can update your local hosts file for name resolution.
 To update your hosts file for chrisguest.internal.
 
@@ -26,10 +27,23 @@ sudo nano /etc/hosts
 sudo killall -HUP mDNSResponder 
 open https://chrisguest.internal:8443/
 
+### Certificate Trust
+You can add the certificate to the keychain.  This will mean it will be trusted by Safari and Chrome.  
+
 # Testing 
-curl https://chrisguest.internal:8443/
-curl -k http://localhost:8080
-curl -k https://localhost:8443
+|----------------------------------------|-------------------------------|
+| Test                                   | Outcome                       |
+|----------------------------------------|-------------------------------|
+| curl -k https://localhost:8443         | HTML Response                 |
+| curl -k http://localhost:8080          | Redirect, HTTPS HTML Response |
+| curl https://chrisguest.internal:8443/ |                               |
+| open https://chrisguest.internal:8443/ |                               |
+|                                        |                               |
+|----------------------------------------|-------------------------------|
+
+
+Test the mirror service.
+curl -X POST http://localhost:5000 -d '{"sf":3}'  --header 'content-type: application/json' | jq
 
 
 # Cleanup
