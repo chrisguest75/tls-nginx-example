@@ -16,6 +16,7 @@ services:
       - ./nginx/index.html:/usr/share/nginx/html/index.html
       - ./certs/tls.crt:/etc/nginx/tls.crt
       - ./certs/tls.key:/etc/nginx/tls.key
+      - ./certs/dhparam.pem:/etc/ssl/certs/dhparam.pem
     networks:
       - backplane
 

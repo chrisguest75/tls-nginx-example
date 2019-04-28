@@ -10,10 +10,11 @@ This repo demonstrates a few TLS features of nginx.
 To run this locally on docker-compose you'll first need to generate a self signed cert
 
 NOTE: This will create a certificate for chrisguest.internal 
+The dhparams key takes about 15-20 mins on my MacBook Pro. 
 
 ```
 cd certs
-./generate_certs.sh
+./generate.sh
 ```
 
 # Running
@@ -36,6 +37,7 @@ You can add the certificate to the keychain.  This will mean it will be trusted 
 
 # Testing 
 
+## Simple tests
 ```
 |----------------------------------------------|-------------------------------|
 | Test                                         | Outcome                       |
@@ -48,8 +50,21 @@ You can add the certificate to the keychain.  This will mean it will be trusted 
 |----------------------------------------------|-------------------------------|
 ```
 
-Test the mirror service.
-curl -X POST http://localhost:5000 -d '{"sf":3}'  --header 'content-type: application/json' | jq
+## Test the mirror service route.
+```
+curl -X POST https://chrisguest.internal:8443/mirror -d '{"sf":3}'  --header 'content-type: application/json' | jq
+```
+NOTE: You can view the DB and check the responses.
+
+## Test DHParam
+```
+openssl s_client -connect chrisguest.internal:8443 -cipher "EDH" | grep "Server Temp Key"
+```
+
+## Test supported protocols and ciphers
+```
+nmap --script ssl-enum-ciphers -p 8443 chrisguest.internal
+```
 
 
 # Cleanup
