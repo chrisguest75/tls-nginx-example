@@ -13,11 +13,11 @@ cd certs
 
 # Running
 ```
-docker-compose up
+docker-compose up --build
 ```
 
 
-##MacOs
+## MacOs
 ### MacOS Hosts
 You can update your local hosts file for name resolution.
 To update your hosts file for chrisguest.internal.
@@ -31,6 +31,8 @@ open https://chrisguest.internal:8443/
 You can add the certificate to the keychain.  This will mean it will be trusted by Safari and Chrome.  
 
 # Testing 
+
+```
 |----------------------------------------|-------------------------------|
 | Test                                   | Outcome                       |
 |----------------------------------------|-------------------------------|
@@ -40,7 +42,7 @@ You can add the certificate to the keychain.  This will mean it will be trusted 
 | open https://chrisguest.internal:8443/ |                               |
 |                                        |                               |
 |----------------------------------------|-------------------------------|
-
+```
 
 Test the mirror service.
 curl -X POST http://localhost:5000 -d '{"sf":3}'  --header 'content-type: application/json' | jq
