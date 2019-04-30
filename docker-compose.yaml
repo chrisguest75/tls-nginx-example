@@ -42,8 +42,8 @@ services:
     build: ./py-request-mirror
     environment:
       PORT: 5000
-      DBUSER: root
-      DBPASSWORD: example
+      DBUSER: logwriter
+      DBPASSWORD: logwriter
       DBPORT: 3306
       DBHOST: mysql      
     #depends_on:

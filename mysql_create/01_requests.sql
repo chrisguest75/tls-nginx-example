@@ -63,3 +63,9 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2019-04-27 22:52:33
+
+CREATE USER 'logwriter'@'%';
+ALTER USER 'logwriter'@'%'
+IDENTIFIED BY 'logwriter' ;
+GRANT Insert ON requests_tracking.request TO 'logwriter'@'%';
+FLUSH PRIVILEGES;
