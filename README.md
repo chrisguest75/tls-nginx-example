@@ -77,6 +77,7 @@ You can add the certificate to the keychain.  This will mean it will be trusted 
 | open https://chrisguest.internal:8443/       | HTML Response                 |
 | curl https://chrisguest.internal:8443/mirror | JSON Mirror Response          |
 | open https://chrisguest.internal:8443/mirror | JSON Mirror Response          |
+| curl -L http://chrisguest.internal:8080/     | Follow redirect               |
 |                                              |                               |
 |----------------------------------------------|-------------------------------|
 ```
