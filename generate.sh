@@ -14,7 +14,7 @@ if [ -z "${DOMAIN}" ];then
     export DOMAIN="chrisguest.internal"
 fi
 if [ -z "${SUBJECT}" ];then 
-    export SUBJECT="chrisguest.internal"
+    export SUBJECT="/C=UK/ST=Berkshire/L=Reading/O=DevOps/CN=${DOMAIN}"
 fi
 echo "DOMAIN is set: ${DOMAIN}"
 echo "SUBJECT is set: ${SUBJECT}"
