@@ -25,4 +25,8 @@ pushd ./certs
 popd
 
 cp ./nginx/nginx.conf.template ./nginx/nginx.conf
-sed -i "s/%DOMAIN%/${DOMAIN}/g" ./nginx/nginx.conf
+if [[ $(uname) == 'Linux' ]]; then
+    sed -i "s/%DOMAIN%/${DOMAIN}/g" ./nginx/nginx.conf 
+elif [[ $(uname) == 'Darwin' ]]; then
+    sed "s/%DOMAIN%/${DOMAIN}/g" ./nginx/nginx.conf.template > ./nginx/nginx.conf
+fi
